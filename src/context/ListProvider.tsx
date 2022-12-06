@@ -13,11 +13,7 @@ export interface ItemState {
   title: string;
 }
 
-const Item_INITIAL_STATE: ItemState[] = [
-  { id: 1, title: 'PS4' },
-  { id: 2, title: 'Vittel Tone' },
-  { id: 3, title: 'Fulbo' },
-];
+const Item_INITIAL_STATE: ItemState[] = [];
 
 interface Props {
   children: ReactNode;
@@ -25,27 +21,44 @@ interface Props {
 
 export const ListProvider: FC<Props> = ({ children }) => {
   const [list, dispatch] = useReducer(ListReducer, Item_INITIAL_STATE);
-  const [title, setTitle] = useState<string>('');
+  const [title, setTitle] = useState<string>(' ');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
 
   const addToList = () => {
-    let item: ItemState = {
-      id: Date.now(),
-      title,
-    };
-    dispatch({ type: 'Add Item', payload: item });
+    if (title !== ' ') {
+      let item: ItemState = {
+        id: Date.now(),
+        title,
+      };
+
+      dispatch({ type: 'Add Item', payload: item });
+      setTitle(' ');
+    } else {
+      window.alert('El input debe tener un regalo');
+    }
   };
 
   const deleteFromList = (item: ItemState) => {
     dispatch({ type: 'Delete Item', payload: item });
   };
 
+  const deleteList = () => {
+    dispatch({ type: 'Delete List' });
+  };
+
   return (
     <ListContext.Provider
-      value={{ list, addToList, deleteFromList, title, handleChange }}
+      value={{
+        list,
+        addToList,
+        deleteFromList,
+        title,
+        handleChange,
+        deleteList,
+      }}
     >
       {children}
     </ListContext.Provider>

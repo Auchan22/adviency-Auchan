@@ -1,5 +1,6 @@
 import { Box, Divider, Heading } from '@chakra-ui/react';
 import { Container } from '@chakra-ui/react';
+import InputBar from './components/InputBar';
 import List from './components/List';
 import Snow from './components/Snow';
 
@@ -17,12 +18,12 @@ function App() {
         minHeight='70vh'
         mx='auto'
         sx={{
-          background: 'rgba(56, 102, 65, 0.81)',
+          background: 'rgba( 255, 255, 255, 0.25 )',
           borderRadius: '8px',
           boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
-          backdropBlur: '11.7px',
+          backdropFilter: 'blur(13px)',
           zIndex: '200',
-          border: '1px solid rgba(56, 102, 65, 1)',
+          border: '1px solid rgba( 255, 255, 255, 0.18 )',
         }}
         p='15px 20px'
         textAlign='center'
@@ -30,10 +31,16 @@ function App() {
         alignItems='center'
         flexDir='column'
       >
-        <Heading my={5} size='2xl' color='#301600'>
-          Adviency
+        <Heading
+          my={5}
+          fontFamily='Solway'
+          fontWeight='800'
+          size='2xl'
+          color='#301600'
+        >
+          Lista de Regalos
         </Heading>
-        <Divider />
+        <InputBar />
         <List />
       </Box>
     </Container>
