@@ -17,11 +17,12 @@ function App() {
         minHeight='70vh'
         mx='auto'
         sx={{
-          background: 'rgba(14, 150, 58, 0.91)',
-          borderRadius: '16px',
-          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-          backdropBlur: '24px',
+          background: 'rgba(56, 102, 65, 0.81)',
+          borderRadius: '8px',
+          boxShadow: ' 0 4px 30px rgba(0, 0, 0, 0.1)',
+          backdropBlur: '11.7px',
           zIndex: '200',
+          border: '1px solid rgba(56, 102, 65, 1)',
         }}
         p='15px 20px'
         textAlign='center'
@@ -29,7 +30,7 @@ function App() {
         alignItems='center'
         flexDir='column'
       >
-        <Heading my={5} size='2xl'>
+        <Heading my={5} size='2xl' color='#301600'>
           Adviency
         </Heading>
         <Divider />
