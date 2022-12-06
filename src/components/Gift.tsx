@@ -23,7 +23,7 @@ const Gift: FC<Props> = ({ data }) => {
       borderRadius='10px'
       boxShadow='10px 10px 64px -7px rgba(0,0,0,0.16)'
     >
-      <Image src={GiftIcon} alt='Gift' width='24px' height='24px' />
+      <Image src={`${GiftIcon}`} alt='Gift' width='24px' height='24px' />
       <Heading
         fontSize='20px'
         fontWeight='bolder'

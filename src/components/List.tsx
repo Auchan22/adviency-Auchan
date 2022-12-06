@@ -1,5 +1,5 @@
 import { Box, Button, Heading, Image, Stack } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { useContext, FC } from 'react';
 import { ListContext } from '../context';
 import Santa from '../assets/santa.svg';
 import Gift from './Gift';
@@ -25,7 +25,7 @@ const List = () => {
           justifyContent='center'
           flexDir='column'
         >
-          <Image src={Santa} alt='Santa Claus' width='60%' />
+          <Image src={`${Santa}`} alt='Santa Claus' width='60%' />
           <Heading as='h5'>La lista esta vacia :(</Heading>
         </Box>
       )}
