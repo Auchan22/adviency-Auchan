@@ -29,5 +29,4 @@ export const ListReducer = (
     default:
       return state;
   }
-  return state;
 };

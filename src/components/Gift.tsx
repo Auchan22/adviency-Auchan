@@ -15,7 +15,7 @@ const Gift: FC<Props> = ({ data }) => {
     <Box
       display='flex'
       alignItems='center'
-      minWidth='70%'
+      minWidth='100%'
       gap='25px'
       justifyContent='space-between'
       bgColor='#226f54'
@@ -29,6 +29,7 @@ const Gift: FC<Props> = ({ data }) => {
         fontWeight='bolder'
         fontFamily='Solway'
         color='#fefaf5'
+        maxWidth='70%'
       >
         {data.title}
       </Heading>

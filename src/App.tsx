@@ -14,8 +14,8 @@ function App() {
     >
       <Snow />
       <Box
-        minWidth='40vw'
-        minHeight='70vh'
+        minWidth='50vw'
+        minHeight='100%'
         mx='auto'
         sx={{
           background: 'rgba( 255, 255, 255, 0.25 )',

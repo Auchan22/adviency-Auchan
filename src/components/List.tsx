@@ -8,10 +8,17 @@ const List = () => {
   const { list, deleteList } = useContext(ListContext);
 
   return (
-    <Box marginTop='20px' minWidth='80%'>
+    <Box marginTop='20px' minWidth='100%' maxHeight='100%'>
       {list.length > 0 ? (
         <>
-          <Stack spacing={5} marginBottom={5} direction='column'>
+          <Stack
+            spacing={5}
+            marginBottom={5}
+            direction='column'
+            minWidth='100%'
+            minHeight='100%'
+            alignItems='center'
+          >
             {list.map((el) => (
               <Gift data={el} key={el.id} />
             ))}

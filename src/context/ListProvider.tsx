@@ -29,13 +29,19 @@ export const ListProvider: FC<Props> = ({ children }) => {
 
   const addToList = () => {
     if (title !== ' ') {
-      let item: ItemState = {
-        id: Date.now(),
-        title,
-      };
+      let exist = list.find((el) => el.title === title);
+      if (!exist) {
+        let item: ItemState = {
+          id: Date.now(),
+          title,
+        };
 
-      dispatch({ type: 'Add Item', payload: item });
-      setTitle(' ');
+        dispatch({ type: 'Add Item', payload: item });
+        setTitle(' ');
+      } else {
+        window.alert('El regalo ya esta en la lista');
+        setTitle(' ');
+      }
     } else {
       window.alert('El input debe tener un regalo');
     }
