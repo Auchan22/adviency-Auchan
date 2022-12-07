@@ -19,16 +19,19 @@ interface Props {
   children: ReactNode;
 }
 
+export type errorType = 'Input Vacio' | 'Regalo Repetido' | 'none';
+
 export const ListProvider: FC<Props> = ({ children }) => {
   const [list, dispatch] = useReducer(ListReducer, Item_INITIAL_STATE);
-  const [title, setTitle] = useState<string>(' ');
+  const [title, setTitle] = useState<string>('');
+  const [errorType, setErrorType] = useState<errorType>('none');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
 
   const addToList = () => {
-    if (title !== ' ') {
+    if (title !== '') {
       let exist = list.find((el) => el.title === title);
       if (!exist) {
         let item: ItemState = {
@@ -37,13 +40,14 @@ export const ListProvider: FC<Props> = ({ children }) => {
         };
 
         dispatch({ type: 'Add Item', payload: item });
-        setTitle(' ');
+        setTitle('');
+        setErrorType('none');
       } else {
-        window.alert('El regalo ya esta en la lista');
-        setTitle(' ');
+        setErrorType('Regalo Repetido');
+        setTitle('');
       }
     } else {
-      window.alert('El input debe tener un regalo');
+      setErrorType('Input Vacio');
     }
   };
 
@@ -53,6 +57,7 @@ export const ListProvider: FC<Props> = ({ children }) => {
 
   const deleteList = () => {
     dispatch({ type: 'Delete List' });
+    setErrorType('none');
   };
 
   return (
@@ -64,6 +69,7 @@ export const ListProvider: FC<Props> = ({ children }) => {
         title,
         handleChange,
         deleteList,
+        errorType,
       }}
     >
       {children}

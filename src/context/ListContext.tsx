@@ -1,5 +1,5 @@
 import { createContext, FormEvent } from 'react';
-import { ItemState } from './ListProvider';
+import { errorType, ItemState } from './ListProvider';
 
 export interface ContextProps {
   list: ItemState[];
@@ -8,6 +8,7 @@ export interface ContextProps {
   title: string;
   handleChange: (e: FormEvent<HTMLInputElement>) => void;
   deleteList: () => void;
+  errorType: errorType;
 }
 
 export const ListContext = createContext({} as ContextProps);
