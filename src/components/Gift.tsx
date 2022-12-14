@@ -31,7 +31,7 @@ const Gift: FC<Props> = ({ data }) => {
         color='#fefaf5'
         maxWidth='70%'
       >
-        {data.title}
+        {data.title} x{data.quantity}
       </Heading>
       <Button onClick={() => deleteFromList(data)}>
         <Icon as={BiTrashAlt} />

@@ -23,7 +23,7 @@ const InputBar = () => {
 
   return (
     <>
-      <Box width='100%' display='flex' gap={5}>
+      <Box width='100%' display='flex' gap={3}>
         <Input
           type='text'
           value={title}
@@ -35,6 +35,7 @@ const InputBar = () => {
         <Input
           type='number'
           width='20%'
+          padding={1}
           value={quantity}
           focusBorderColor='#386641'
           borderWidth={2}
