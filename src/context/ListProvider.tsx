@@ -11,6 +11,7 @@ import { ListContext, ListReducer } from './';
 export interface ItemState {
   id: number;
   title: string;
+  quantity: string;
 }
 
 const Item_INITIAL_STATE: ItemState[] = [];
@@ -19,35 +20,51 @@ interface Props {
   children: ReactNode;
 }
 
-export type errorType = 'Input Vacio' | 'Regalo Repetido' | 'none';
+export type errorType =
+  | 'Input Vacio'
+  | 'Regalo Repetido'
+  | 'Cantidad Cero'
+  | 'none';
 
 export const ListProvider: FC<Props> = ({ children }) => {
   const [list, dispatch] = useReducer(ListReducer, Item_INITIAL_STATE);
   const [title, setTitle] = useState<string>('');
+  const [quantity, setQuantity] = useState<string>('');
   const [errorType, setErrorType] = useState<errorType>('none');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
 
+  const handleQuantity = (e: FormEvent<HTMLInputElement>) => {
+    setQuantity(e.currentTarget.value);
+  };
+
   const addToList = () => {
-    if (title !== '') {
+    if (quantity !== '' && title !== '') {
       let exist = list.find((el) => el.title === title);
       if (!exist) {
         let item: ItemState = {
           id: Date.now(),
           title,
+          quantity,
         };
 
         dispatch({ type: 'Add Item', payload: item });
         setTitle('');
+        setQuantity('');
         setErrorType('none');
       } else {
         setErrorType('Regalo Repetido');
         setTitle('');
+        setQuantity('');
       }
     } else {
-      setErrorType('Input Vacio');
+      if (title == '') {
+        setErrorType('Input Vacio');
+      } else if (quantity == '') {
+        setErrorType('Cantidad Cero');
+      }
     }
   };
 
@@ -70,6 +87,8 @@ export const ListProvider: FC<Props> = ({ children }) => {
         handleChange,
         deleteList,
         errorType,
+        handleQuantity,
+        quantity,
       }}
     >
       {children}

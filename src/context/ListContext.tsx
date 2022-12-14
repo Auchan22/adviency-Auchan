@@ -9,6 +9,8 @@ export interface ContextProps {
   handleChange: (e: FormEvent<HTMLInputElement>) => void;
   deleteList: () => void;
   errorType: errorType;
+  handleQuantity: (e: FormEvent<HTMLInputElement>) => void;
+  quantity: string;
 }
 
 export const ListContext = createContext({} as ContextProps);

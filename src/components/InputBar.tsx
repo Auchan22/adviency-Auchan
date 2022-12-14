@@ -12,7 +12,14 @@ const ErrorMsg = styled.p`
 `;
 
 const InputBar = () => {
-  const { title, handleChange, addToList, errorType } = useContext(ListContext);
+  const {
+    title,
+    handleChange,
+    addToList,
+    errorType,
+    quantity,
+    handleQuantity,
+  } = useContext(ListContext);
 
   return (
     <>
@@ -25,6 +32,14 @@ const InputBar = () => {
           focusBorderColor='#386641'
           borderWidth={2}
         />
+        <Input
+          type='number'
+          width='20%'
+          value={quantity}
+          focusBorderColor='#386641'
+          borderWidth={2}
+          onChange={handleQuantity}
+        />
         <Button onClick={addToList} size='md' colorScheme='red'>
           <Icon as={AiFillGift} />
         </Button>
@@ -33,6 +48,8 @@ const InputBar = () => {
         <ErrorMsg>El input no puede estar vacio</ErrorMsg>
       ) : errorType === 'Regalo Repetido' ? (
         <ErrorMsg>El regalo esta repetido</ErrorMsg>
+      ) : errorType === 'Cantidad Cero' ? (
+        <ErrorMsg>Se debe definir una cantidad de regalos</ErrorMsg>
       ) : null}
     </>
   );
