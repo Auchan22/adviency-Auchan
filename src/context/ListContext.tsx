@@ -11,6 +11,8 @@ export interface ContextProps {
   errorType: errorType;
   handleQuantity: (e: FormEvent<HTMLInputElement>) => void;
   quantity: string;
+  image: string;
+  handleImage: (e: FormEvent<HTMLInputElement>) => void;
 }
 
 export const ListContext = createContext({} as ContextProps);

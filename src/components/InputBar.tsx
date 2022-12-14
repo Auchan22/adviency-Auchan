@@ -19,11 +19,18 @@ const InputBar = () => {
     errorType,
     quantity,
     handleQuantity,
+    handleImage,
+    image,
   } = useContext(ListContext);
 
   return (
     <>
-      <Box width='100%' display='flex' gap={3}>
+      <Box
+        width='100%'
+        display='flex'
+        flexDir={{ base: 'column', md: 'row' }}
+        gap={3}
+      >
         <Input
           type='text'
           value={title}
@@ -33,9 +40,18 @@ const InputBar = () => {
           borderWidth={2}
         />
         <Input
+          type='text'
+          placeholder='https://image...'
+          onChange={handleImage}
+          value={image}
+          focusBorderColor='#386641'
+          borderWidth={2}
+          width={{ base: '100%', md: '40%' }}
+        />
+        <Input
           type='number'
-          width='20%'
-          padding={1}
+          placeholder='Cantidad'
+          width={{ base: '100%', md: '20%' }}
           value={quantity}
           focusBorderColor='#386641'
           borderWidth={2}

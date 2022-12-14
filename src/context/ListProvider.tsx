@@ -12,6 +12,7 @@ export interface ItemState {
   id: number;
   title: string;
   quantity: string;
+  image: string;
 }
 
 const Item_INITIAL_STATE: ItemState[] = JSON.parse(
@@ -32,6 +33,7 @@ export const ListProvider: FC<Props> = ({ children }) => {
   const [list, dispatch] = useReducer(ListReducer, Item_INITIAL_STATE);
   const [title, setTitle] = useState<string>('');
   const [quantity, setQuantity] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [errorType, setErrorType] = useState<errorType>('none');
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
@@ -42,6 +44,10 @@ export const ListProvider: FC<Props> = ({ children }) => {
     setQuantity(e.currentTarget.value);
   };
 
+  const handleImage = (e: FormEvent<HTMLInputElement>) => {
+    setImage(e.currentTarget.value);
+  };
+
   const addToList = () => {
     if (quantity !== '' && title !== '') {
       let exist = list.find((el) => el.title === title);
@@ -50,11 +56,13 @@ export const ListProvider: FC<Props> = ({ children }) => {
           id: Date.now(),
           title,
           quantity,
+          image,
         };
 
         dispatch({ type: 'Add Item', payload: item });
         setTitle('');
         setQuantity('');
+        setImage('');
         setErrorType('none');
       } else {
         setErrorType('Regalo Repetido');
@@ -91,6 +99,8 @@ export const ListProvider: FC<Props> = ({ children }) => {
         errorType,
         handleQuantity,
         quantity,
+        handleImage,
+        image,
       }}
     >
       {children}
