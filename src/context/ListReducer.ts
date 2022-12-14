@@ -11,19 +11,32 @@ export const ListReducer = (
 ): ItemState[] => {
   switch (action.type) {
     case 'Add Item': {
-      return [...state, action.payload] as ItemState[];
+      localStorage.setItem(
+        'list',
+        JSON.stringify([...state, action.payload] as ItemState[]),
+      );
+      return JSON.parse(localStorage.getItem('list') || '');
     }
 
     case 'Delete Item': {
       let existItem = state.find((el) => action.payload?.id === el.id);
+      localStorage.setItem(
+        'list',
+        JSON.stringify([...state, action.payload] as ItemState[]),
+      );
 
-      return existItem
-        ? [...state.filter((el) => el.id !== existItem?.id)]
-        : [...state];
+      localStorage.setItem(
+        'list',
+        JSON.stringify([...state.filter((el) => el.id !== existItem?.id)]),
+      );
+
+      let lista = JSON.parse(localStorage.getItem('list') || '');
+      return lista;
     }
 
     case 'Delete List': {
-      return [];
+      localStorage.setItem('list', JSON.stringify([]));
+      return JSON.parse(localStorage.getItem('list') || '');
     }
 
     default:

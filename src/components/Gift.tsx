@@ -10,7 +10,6 @@ interface Props {
 
 const Gift: FC<Props> = ({ data }) => {
   const { deleteFromList } = useContext(ListContext);
-  console.log(data);
 
   return (
     <Box

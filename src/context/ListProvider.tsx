@@ -14,7 +14,9 @@ export interface ItemState {
   quantity: string;
 }
 
-const Item_INITIAL_STATE: ItemState[] = [];
+const Item_INITIAL_STATE: ItemState[] = JSON.parse(
+  localStorage.getItem('list') || '',
+);
 
 interface Props {
   children: ReactNode;
